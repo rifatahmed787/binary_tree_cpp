@@ -3,6 +3,7 @@ using namespace std;
 
 class Node
 {
+    public:
     int val;
     Node *left;
     Node *right;
@@ -20,7 +21,6 @@ Node *input_tree()
     int val;
     cin >> val;
     Node *root;
-
     if (val == -1)
         root = NULL;
     else
@@ -36,19 +36,18 @@ Node *input_tree()
 
         int l, r;
         cin >> l >> r;
-
         Node *myleft;
         Node *myright;
 
         if (l == -1)
-            myLeft = NULL;
+            myleft = NULL;
         else
-            myLeft = new Node(l);
+            myleft = new Node(l);
 
         if (r == -1)
-            myRight = NULL;
+            myright = NULL;
         else
-            myRight = new Node(r);
+            myright = new Node(r);
 
         p->left = myleft;
         p->right = myright;
@@ -58,24 +57,21 @@ Node *input_tree()
         if (p->right)
             q.push(p->right);
     }
-
     return root;
 }
 
-void postorder(Node *root){
-    if(root==NULL){
-        return;
-    };
-    postorder(root->left);
-    postorder(root->right);
-    cout<<root->val<<" ";
+void inorder(Node *root){
+   if(root==NULL){
+    return;
+   }
+   inorder(root->left);
+   cout<<root->val<<" ";
+   inorder(root->right);
 }
 
 int main()
 {
     Node *root=input_tree();
-
-    postorder(root);
-
+    inorder(root);
     return 0;
 }
